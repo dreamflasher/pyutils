@@ -1,0 +1,1 @@
+Call webserver at endpoint with URL and it will return the JS rendered HTML.
