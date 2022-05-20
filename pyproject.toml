@@ -1,0 +1,117 @@
+[flake8]
+format = "wemake"
+ignore = "D100, D203, D212, D200, Q000, WPS459, WPS305, WPS412, WPS323, WPS111, WPS430, S311, WPS336, WPS602, WPS404, WPS237, S404, C812, S101, I003, WPS507, WPS318, WPS319, W503, DAR201, DAR003, WPS234, WPS227, E203, WPS317, WPS226"
+#DX: see below
+#Q000: double quotation marks (black wants those)
+#WPS459: comparison with floats
+#WPS305: f-strings
+#WPS412: init with logic
+#WPS323: percentage format string necessary for logging module
+#WPS111: allow short names
+#WPS430: nested functions
+#S311: non-cryptographic rand
+#WPS336: string concatenation
+#WPS602: static methods
+#WPS404: complex default values
+#WPS237: complex f-strings
+#S404: subprocess module
+#C812: trailing comma
+#S101: asserts
+#I003: isort blank lines
+#WPS507: allow len 0 comparison (seems a wps bug)
+#W503: line break before binary operator (needed for black compatability)
+#WPS318: Found extra indentation, conflicting with black
+#WPS319: Found bracket in wrong position, conflicting with black
+#DAR003: Incorrect docstring indentation, seems buggy, unfortunately
+#DAR201: Missing returns in Docstring, is buggy, unfortunately (function contains Returns)
+#WPS234: Overly complex type annotations. We need correct type annotations, no matter the complexity
+#WPS227: Allow long output tuples
+#E203: whitespace before : needed for array indexing black compatability
+#WPS317: black compliance
+#WPS226: Forbid returning or yielding tuples that are too long
+
+max-line-length = "160"
+
+# short names in contexts are fine
+min-name-length = "1"
+
+# default 7
+max-module-members = "11"
+
+# default 12
+max-imports = "21"
+
+# default 14
+max-line-complexity = "21"
+
+# default 7
+max-methods = "11"
+
+# default 5
+max-local-variables = "12"
+
+# default 1
+max-try-body-length = "3"
+
+# default 12
+max-cognitive-score = "18"
+
+# default 8
+max-cognitive-average = "10"
+
+# default 3
+max-annotation-complexity = "4"
+
+# default: 6
+max-attributes = "9"
+
+# default: 5
+max-arguments = "8"
+
+[isort]
+line_length = "160"
+
+[pycodestyle]
+ignore = "E203, W503"
+max-line-length = "160"
+statistics = "True"
+
+[mypy]
+ignore_missing_imports = "True"
+disallow_untyped_calls = "True"
+disallow_untyped_defs = "True"
+# plugins = "numpy.typing.mypy_plugin"
+disallow_incomplete_defs = "True"
+disallow_any_explicit = "True"
+follow_imports = "skip"
+
+[tool.pylint.messages_control]
+disable = "C0103"
+
+[tool.pylint.format]
+max-line-length = "160"
+
+[tool.poetry]
+name = "pyutils"
+version = "0.1.0"
+description = ""
+authors = ["Marcel Ackermann"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "*"
+splinter = "*"
+
+[tool.poetry.dev-dependencies]
+mypy = "*"
+flake8 = "*"
+pydocstyle = "*"
+pycodestyle = "*"
+autopep8 = "*"
+wemake-python-styleguide = "*"
+pytest = "*"
+types-requests = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
