@@ -9,6 +9,7 @@ app = Flask(
 )
 from flask import abort
 from splinter import Browser
+import time
 
 
 @app.route("/", methods=["GET"])
@@ -25,6 +26,7 @@ def fetch() -> str:
 
     with Browser("chrome", headless=True, capabilities={'acceptSslCerts': True}, user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0") as browser:
         browser.visit(request.args["url"])
+        time.sleep(10)
 
         return browser.html
 
