@@ -23,10 +23,10 @@ def fetch() -> str:
         abort(404)
         return ""
 
-    with Browser() as browser:
+    with Browser(headless=True) as browser:
         browser.visit(request.args["url"])
 
-        return browser.html()
+        return browser.html
 
     
 
