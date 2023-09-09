@@ -27,6 +27,7 @@ def fetch() -> str:
         context = browser.new_context()
         page = context.new_page()
         page.goto(request.args["url"])
+        print("hi", file=sys.stderr)
         print(request.args["url"], file=sys.stderr)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
