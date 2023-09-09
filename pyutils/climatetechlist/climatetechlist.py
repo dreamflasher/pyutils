@@ -1,4 +1,5 @@
 import asyncio
+import sys
 import time
 
 from flask import Flask, render_template, request
@@ -26,11 +27,11 @@ def fetch() -> str:
         context = browser.new_context()
         page = context.new_page()
         page.goto(request.args["url"])
-        print(request.args["url"])
+        print(request.args["url"], file=sys.stderr)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         response = loop.run_until_complete(get_response(page))
-        print(response)
+        print(response, file=sys.stderr)
         return response
 
 
