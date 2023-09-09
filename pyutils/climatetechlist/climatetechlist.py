@@ -29,11 +29,11 @@ def fetch() -> str:
         page.goto(request.args["url"])
         print("hi", flush=True)
         app.logger.info('testing info log')
-        print(request.args["url"], file=sys.stderr)
+        #print(request.args["url"], file=sys.stderr)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         response = loop.run_until_complete(get_response(page))
-        print(response, file=sys.stderr)
+        #print(response, file=sys.stderr)
         return response
 
 
