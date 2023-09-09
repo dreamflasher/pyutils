@@ -96,12 +96,13 @@ name = "pyutils"
 version = "0.1.0"
 description = ""
 authors = ["Marcel Ackermann"]
+packages = [{include = "pyutils"},]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-Flask = "^2.1.2"
-splinter = "^0.17.0"
-selenium = "^4.1.5"
+python = "^3.10"
+Flask = "^2.2.2"
+splinter = "^0.19.0"
+selenium = "^4.7.2"
 
 [tool.poetry.dev-dependencies]
 mypy = "*"
