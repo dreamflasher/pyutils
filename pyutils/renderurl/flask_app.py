@@ -1,16 +1,18 @@
 from random import shuffle
 from typing import List
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+
 from pyutils.renderurl.secret import app_pass
 from selenium.webdriver.chrome.options import Options
-from flask import request
+
 app = Flask(
     __name__,
 )
+import time
+
 from flask import abort
 from splinter import Browser
-import time
 
 
 @app.route("/", methods=["GET"])
@@ -36,8 +38,6 @@ def fetch() -> str:
         time.sleep(10)
 
         return browser.html
-
-
 
 
 if __name__ == "__main__":
