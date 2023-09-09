@@ -26,9 +26,12 @@ def fetch() -> str:
         context = browser.new_context()
         page = context.new_page()
         page.goto(request.args["url"])
+        print(request.args["url"])
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        return loop.run_until_complete(get_response(page))
+        response = loop.run_until_complete(get_response(page))
+        print(response)
+        return response
 
 
 if __name__ == "__main__":
