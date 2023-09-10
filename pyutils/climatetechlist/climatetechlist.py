@@ -39,4 +39,4 @@ def fetch() -> str:
 
 if __name__ == "__main__":
     port = 8884
-    app.run(host="127.0.0.1", port=port, debug=False)  # noqa:S104,S201
+    app.run(host="127.0.0.1", port=port, debug=True)  # noqa:S104,S201
