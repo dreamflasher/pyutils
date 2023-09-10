@@ -21,7 +21,8 @@ def fetch() -> str:
     Returns:
         Processed html string
     """
-    print("hi", flush=True)
+    #print("hi", flush=True)
+    print('This is error output', file=sys.stderr)
 
     with sync_playwright() as pw:
         #app.logger.info('testing info log')
