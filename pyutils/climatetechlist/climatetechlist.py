@@ -21,25 +21,21 @@ def fetch() -> str:
     Returns:
         Processed html string
     """
-    #print("hi", flush=True)
-    #print('This is error output', file=sys.stderr)
-    #app.logger.warn('testing info log')
-
-    # with sync_playwright() as pw:
-    #     #app.logger.info('testing info log')
-    #     browser = pw.chromium.launch(headless=True)
-    #     context = browser.new_context()
-    #     page = context.new_page()
-    #     page.goto(request.args["url"])
-    #     #print(request.args["url"], file=sys.stderr)
-    #     loop = asyncio.new_event_loop()
-    #     asyncio.set_event_loop(loop)
-    #     response = loop.run_until_complete(get_response(page))
-    #     #print(response, file=sys.stderr)
-    #     return response
+    with sync_playwright() as pw:
+        app.logger.info('testing info log')
+        browser = pw.chromium.launch(headless=True)
+        context = browser.new_context()
+        page = context.new_page()
+        page.goto(request.args["url"])
+        print(request.args["url"], file=sys.stderr)
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        response = loop.run_until_complete(get_response(page))
+        #print(response, file=sys.stderr)
+        return response
     return ""
 
 
 if __name__ == "__main__":
     port = 8884
-    app.run(host="127.0.0.1", port=port, debug=True)  # noqa:S104,S201
+    app.run(host="127.0.0.1", port=port, debug=False)  # noqa:S104,S201
