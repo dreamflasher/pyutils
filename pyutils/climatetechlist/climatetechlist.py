@@ -21,9 +21,9 @@ def fetch() -> str:
     Returns:
         Processed html string
     """
+    print("hi", flush=True)
 
     with sync_playwright() as pw:
-        print("hi", flush=True)
         #app.logger.info('testing info log')
         browser = pw.chromium.launch(headless=True)
         context = browser.new_context()
@@ -39,4 +39,4 @@ def fetch() -> str:
 
 if __name__ == "__main__":
     port = 8884
-    app.run(host="127.0.0.1", port=port, debug=True)  # noqa:S104,S201
+    app.run(host="127.0.0.1", port=port, debug=False)  # noqa:S104,S201
