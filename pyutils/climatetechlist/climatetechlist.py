@@ -22,16 +22,15 @@ def fetch() -> str:
         Processed html string
     """
     with sync_playwright() as pw:
-        app.logger.error(request.args["url"])
+        #app.logger.error(request.args["url"])
         browser = pw.chromium.launch(headless=True)
         context = browser.new_context()
         page = context.new_page()
         page.goto(request.args["url"])
-        #print(request.args["url"], file=sys.stderr)
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        #loop = asyncio.new_event_loop()
+        #asyncio.set_event_loop(loop)
+        loop = asyncio.get_event_loop()
         response = loop.run_until_complete(get_response(page))
-        #print(response, file=sys.stderr)
         return response
     return ""
 
