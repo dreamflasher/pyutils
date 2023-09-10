@@ -1,19 +1,16 @@
-import asyncio
 import sys
 import time
 
-import nest_asyncio
 from flask import Flask, render_template, request
 from playwright.sync_api import sync_playwright
 
-nest_asyncio.apply()
 app = Flask(
     __name__,
 )
 
-async def get_response(page):
-    response = await page.waitForResponse(lambda response : response.url == "https://www.climatetechlist.com/api/jobs" and response.status == 200 )
-    return response.text()
+# async def get_response(page):
+#     response = await page.waitForResponse(lambda response : response.url == "https://www.climatetechlist.com/api/jobs" and response.status == 200 )
+#     return response.text()
     
 @app.route("/clmttchlst", methods=["GET"])
 def fetch() -> str:
@@ -29,11 +26,13 @@ def fetch() -> str:
         context = browser.new_context()
         page = context.new_page()
         page.goto(request.args["url"])
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        # loop = asyncio.new_event_loop()
+        # asyncio.set_event_loop(loop)
         #loop = asyncio.get_event_loop()
-        response = loop.run_until_complete(get_response(page))
-        return response
+        # response = loop.run_until_complete(get_response(page))
+        with page.expect_response(lambda response: response.url == "https://www.climatetechlist.com/api/jobs" and response.status == 200) as response_info:
+            return response_info.text()
+        return ""
     return ""
 
 
