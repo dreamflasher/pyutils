@@ -31,7 +31,7 @@ def fetch() -> str:
         # response = loop.run_until_complete(get_response(page))
         with page.expect_response(lambda response: response.url == "https://www.climatetechlist.com/api/jobs" and response.status == 200) as response_info:
             page.goto(request.args["url"])
-            return response_info.value
+            return response_info.value.text()
         return ""
     return ""
 
