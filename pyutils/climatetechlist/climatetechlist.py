@@ -25,12 +25,12 @@ def fetch() -> str:
         browser = pw.chromium.launch(headless=True)
         context = browser.new_context()
         page = context.new_page()
-        page.goto(request.args["url"])
         # loop = asyncio.new_event_loop()
         # asyncio.set_event_loop(loop)
         #loop = asyncio.get_event_loop()
         # response = loop.run_until_complete(get_response(page))
         with page.expect_response(lambda response: response.url == "https://www.climatetechlist.com/api/jobs" and response.status == 200) as response_info:
+            page.goto(request.args["url"])
             return response_info.text()
         return ""
     return ""
