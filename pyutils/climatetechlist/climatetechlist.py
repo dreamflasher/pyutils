@@ -36,6 +36,7 @@ def fetch() -> str:
     #     response = loop.run_until_complete(get_response(page))
     #     #print(response, file=sys.stderr)
     #     return response
+    return ""
 
 
 if __name__ == "__main__":
